@@ -1,0 +1,83 @@
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php $img = fn($f) => $block->getViewFileUrl('images/'.$f); ?>
+
+<div class="home-hero" id="heroAnchor">
+  <img class="hero-bg" src="<?= $img('hero.jpg') ?>" alt="Hero">
+  <div class="hero-overlay">
+    <div class="brand-badge">IMAGIN</div>
+    <h1>Embark on Your Next<br>Adventure with Confidence</h1>
+  </div>
+</div>
+
+<!-- BARRE DE RECHERCHE -->
+<div id="finderBar" class="finder is-floating" aria-label="Finder search bar">
+  <form class="finder__form" method="get" action="<?= $block->getUrl('finder/index/result'); ?>">
+    <div class="finder__field">
+      <label class="finder__label">Location</label>
+      <input class="finder__input" type="text" name="location" placeholder="Enter your destination">
+    </div>
+    <div class="finder__field">
+      <label class="finder__label">Asset</label>
+      <select class="finder__select" name="asset">
+        <option value="">Set asset</option>
+        <option value="residential">Residential</option>
+        <option value="commercial">Commercial</option>
+        <option value="hcr">Hotel Café Restaurant</option>
+      </select>
+    </div>
+    <div class="finder__field">
+      <label class="finder__label">Max Price</label>
+      <input class="finder__input" type="number" name="max_price" min="0" step="1000" placeholder="Set max price">
+    </div>
+    <button class="finder__submit" type="submit" aria-label="Search">
+      <svg viewBox="0 0 24 24" width="26" height="26" role="img" aria-hidden="true">
+        <path d="M21 20l-5.7-5.7a7 7 0 10-1.4 1.4L20 21zM4 10a6 6 0 1112 0A6 6 0 014 10z"/>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<!-- GRILLE DES TUILES -->
+<section class="home-tiles">
+  <a class="tile" href="<?= $block->getUrl('catalog/category/view', ['id' => 12]) ?>">
+    <img class="tile__img" src="<?= $img('residential.jpg') ?>" alt="Résidentiel">
+    <span class="tile__label">RESIDENTIEL</span>
+  </a>
+  <a class="tile" href="<?= $block->getUrl('catalog/category/view', ['id' => 34]) ?>">
+    <img class="tile__img" src="<?= $img('murs-occupes.jpg') ?>" alt="Murs occupés">
+    <span class="tile__label">MURS OCCUPES</span>
+  </a>
+  <a class="tile" href="<?= $block->getUrl('cms/page/view', ['page_id' => 'biens-a-renover']) ?>">
+    <img class="tile__img" src="<?= $img('renover.jpg') ?>" alt="Biens à rénover">
+    <span class="tile__label">BIENS A RENOVER</span>
+  </a>
+  <a class="tile" href="<?= $block->getUrl('finder/index/result') ?>">
+    <img class="tile__img" src="<?= $img('street.jpg') ?>" alt="Promo immo">
+    <span class="tile__label">PROMOTION IMMOBILIERE</span>
+  </a>
+  <a class="tile" href="<?= $block->getUrl('catalog/category/view', ['id' => 56]) ?>">
+    <img class="tile__img" src="<?= $img('commercial.jpg') ?>" alt="Commercial">
+    <span class="tile__label">IMMOBILIER COMMERCIAL</span>
+  </a>
+  <a class="tile" href="<?= $block->getUrl('catalog/category/view', ['id' => 78]) ?>">
+    <img class="tile__img" src="<?= $img('hcr.jpg') ?>" alt="HCR">
+    <span class="tile__label">HOTEL CAFE RESTAURANT</span>
+  </a>
+  <a class="tile" href="<?= $block->getUrl('contact') ?>">
+    <img class="tile__img" src="<?= $img('services.jpg') ?>" alt="Services">
+    <span class="tile__label">SERVICES</span>
+  </a>
+</section>
+
+<!-- Init du JS sticky (fichier de THÈME: js/search-sticky) -->
+<script type="text/x-magento-init">
+{
+  "*": {
+    "js/search-sticky": {
+      "barSelector": "#finderBar",
+      "anchorSelector": "#heroAnchor",
+      "offset": 16
+    }
+  }
+}
+</script>

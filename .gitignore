@@ -1,0 +1,54 @@
+# === Magento 2 Git Ignore ===
+
+# Composer vendor directory (installed via composer install)
+src/vendor/
+
+# Generated code and metadata
+src/generated/
+src/var/cache/
+src/var/page_cache/
+src/var/session/
+src/var/view_preprocessed/
+src/var/composer_home/
+src/var/report/
+src/var/log/
+src/var/tmp/
+src/var/importexport/
+src/var/export/
+src/var/backups/
+src/var/di/
+src/var/tmp/
+src/var/resource_config.json
+
+# Static content (can be re-deployed)
+src/pub/static/
+!src/pub/static/.htaccess
+
+# Media uploads (you might choose to include these if you want shared assets)
+# Comment out if you want to version-control product images, etc.
+# src/pub/media/
+# !src/pub/media/.htaccess
+
+# Sensitive configuration files
+src/app/etc/env.php
+src/app/etc/config.php
+
+# Node / front-end build files
+src/node_modules/
+src/package-lock.json
+src/yarn.lock
+src/Gruntfile.js
+src/grunt-config.json
+src/package.json
+
+# OS / IDE files
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Docker / environment files
+.env
+.enves.*
+docker-compose.override.yml
+
