@@ -18,5 +18,12 @@ RUN set -eux; \
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/html
+# PHP defaults (your request)
+RUN printf "memory_limit = 2G\nmax_execution_time = 300\n" \
+    > /usr/local/etc/php/conf.d/zz-dev.ini
 
+# Init script to auto-provision Magento
+COPY startup.sh /usr/local/bin/startup.sh
+RUN chmod +x /usr/local/bin/startup.sh
+
+WORKDIR /var/www/html

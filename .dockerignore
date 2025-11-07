@@ -1,0 +1,26 @@
+# macOS metadata
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Local editor config
+.vscode
+.idea
+
+# Composer download cache
+vendor/
+composer.lock
+
+# Magento generated data
+src/var/
+src/pub/static/
+src/generated/
+src/pub/media/
+
+# Logs
+*.log
+
+# Node build artifacts (if you add them later)
+node_modules/

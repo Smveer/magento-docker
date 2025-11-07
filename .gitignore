@@ -49,6 +49,6 @@ src/package.json
 
 # Docker / environment files
 .env
-.enves.*
+.enves
 docker-compose.override.yml
 

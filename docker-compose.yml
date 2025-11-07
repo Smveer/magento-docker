@@ -21,6 +21,8 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
+      # Uncomment if ES is unstable on your machine:
+      # - ES_JAVA_OPTS=-Xms1g -Xmx1g
     ports:
       - "9200:9200"
 
@@ -44,6 +46,8 @@ services:
       - elasticsearch
     environment:
       - COMPOSER_ALLOW_SUPERUSER=1
+    # Start our init script which will provision Magento and then run php-fpm
+    command: ["bash", "/usr/local/bin/startup.sh"]
     ports:
       - "9000:9000"
 
@@ -53,7 +57,7 @@ services:
     depends_on:
       - php
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./src:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
