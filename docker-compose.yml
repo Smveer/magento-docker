@@ -44,6 +44,8 @@ services:
       - mysql
       - redis
       - elasticsearch
+    env_file:
+      - .env
     environment:
       - COMPOSER_ALLOW_SUPERUSER=1
     # Start our init script which will provision Magento and then run php-fpm

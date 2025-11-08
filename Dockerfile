@@ -4,6 +4,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         git unzip zip cron vim pkg-config \
+        default-mysql-client \
         libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
         libxml2-dev libxslt1-dev libicu-dev libzip-dev zlib1g-dev \
         libonig-dev procps\
@@ -23,7 +24,7 @@ RUN printf "memory_limit = 2G\nmax_execution_time = 300\n" \
     > /usr/local/etc/php/conf.d/zz-dev.ini
 
 # Init script to auto-provision Magento
-COPY startup.sh /usr/local/bin/startup.sh
+COPY docker/php/startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 
 WORKDIR /var/www/html

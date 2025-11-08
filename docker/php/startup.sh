@@ -3,11 +3,6 @@ set -euo pipefail
 
 cd /var/www/html
 
-echo "==> Waiting for MySQL at ${DB_HOST:-mysql}..."
-until mysqladmin ping -h"${DB_HOST:-mysql}" -u"${DB_USER:-magento}" -p"${DB_PASSWORD:-magento}" --silent; do
-  sleep 2
-done
-
 # Composer auth (Marketplace keys)
 if [[ -n "${MAGENTO_PUBLIC_KEY:-}" && -n "${MAGENTO_PRIVATE_KEY:-}" ]]; then
   echo "==> Configuring Composer auth for repo.magento.com"
@@ -65,6 +60,7 @@ if [[ "${MAGENTO_MODE:-developer}" == "developer" ]]; then
   php -d memory_limit="${PHP_MEMORY_LIMIT:-2G}" bin/magento deploy:mode:set developer || true
 fi
 
+php -d memory_limit="${PHP_MEMORY_LIMIT:-2G}" bin/magento setup:upgrade || true
 # Warm up
 php -d memory_limit="${PHP_MEMORY_LIMIT:-2G}" bin/magento cache:flush || true
 php -d memory_limit="${PHP_MEMORY_LIMIT:-2G}" bin/magento indexer:reindex || true
